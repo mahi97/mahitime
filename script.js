@@ -71,7 +71,8 @@ function getDetail(start, now, offset) {
 }
 
 function updateMahiTime() {
-    const now = new Date();
+    let now = new Date();
+    now = now.toISOString();
     const mahiYearStart = new Date(Date.UTC(2024, 2, 20, 3, 7, 0));
     // const yearStart = new Date('2024-01-01T00:00:00');
     const mahiDetail = getDetail(mahiYearStart, now, 3);
