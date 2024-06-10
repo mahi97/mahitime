@@ -65,14 +65,14 @@ function updateMahiTime() {
         }
     }
 
-    const day_of_week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];   
+    const day_of_week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];   
 
-    const currentDateString = `${now.getFullYear()}, ${month}, ${dayOfMonth}, Day of Week: ${day_of_week[dayOfWeek]}`;
+    const currentDateString = `${now.getFullYear()}, ${month}, ${dayOfMonth}, ${day_of_week[dayOfWeek]}`;
     document.getElementById('mahi-current-date').textContent = currentDateString;
 
-    document.getElementById('persian-month').textContent = `Persian: ${persianMonth}`;
-    document.getElementById('latin-month').textContent = `English: ${latinMonth}`;
-    document.getElementById('seasonal-month').textContent = `Seasonal: ${month}`;
+    document.getElementById('mahi-persian-month').textContent = `Persian: ${persianMonth}`;
+    document.getElementById('mahi-latin-month').textContent = `Latin: ${latinMonth}`;
+    document.getElementById('mahi-seasonal-month').textContent = `Seasonal: ${month}`;
 }
 
 setInterval(updateMahiTime, 1);
