@@ -45,8 +45,8 @@ function getDetail(start, now, offset) {
 
     let period = '';
     if (isAMPM) {
-        currentMahiHour = currentMahiHour % 10;
         period = currentMahiHour < 10 ? 'AM' : 'PM';
+        currentMahiHour = currentMahiHour % 10;
     }
 
     let dayOfYear = currentMahiDayOfYear + 1;
