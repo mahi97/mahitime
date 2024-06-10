@@ -67,7 +67,7 @@ function getDetail(start, now, offset) {
         }
     }
     dayOfWeek = day_of_week[dayOfWeek];
-    return { year: now.getFullYear(), month, dayOfMonth, hour: currentMahiHour, min: currentMahiMinute, sec: currentMahiSecond, weekday: dayOfWeek, period, persianMonth, latinMonth };
+    return { year: now.getFullYear()+10000, month, dayOfMonth, hour: currentMahiHour, min: currentMahiMinute, sec: currentMahiSecond, weekday: dayOfWeek, period, persianMonth, latinMonth };
 }
 
 function updateMahiTime() {
