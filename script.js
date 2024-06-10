@@ -20,6 +20,10 @@ const months = [
     { name: "Winter Month 3", days: 30 },
 ];
 
+function padZero(value) {
+    return value < 10 ? `0${value}` : value;
+}
+
 function updateMahiTime() {
     const now = new Date();
     const mahiYearStart = new Date('2024-03-20T03:07:00');
@@ -40,7 +44,7 @@ function updateMahiTime() {
     const period = currentMahiHour < 10 ? 'AM' : 'PM';
     currentMahiHour = currentMahiHour % 10;
 
-    const currentTimeString = `Time: ${currentMahiHour}:${currentMahiMinute}:${currentMahiSecond} ${period}, or ${currentMahiHour}.${currentMahiMinute}${currentMahiSecond} ${period}`;
+    const currentTimeString = `Time: ${currentMahiHour}:${padZero(currentMahiMinute)}:${padZero(currentMahiSecond)} ${period}, or ${currentMahiHour}.${currentMahiMinute}${currentMahiSecond} ${period}`;
     document.getElementById('mahi-current-time').textContent = currentTimeString;
 
     let dayOfYear = currentMahiDayOfYear + 1;
@@ -57,8 +61,9 @@ function updateMahiTime() {
             break;
         }
     }
+    const day_of_week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];   
 
-    const currentDateString = `Year: ${now.getFullYear()}, Month: ${month}, Day: ${dayOfMonth}, Day of Week: ${dayOfWeek}`;
+    const currentDateString = `${now.getFullYear()}, ${month}, ${dayOfMonth}, ${day_of_week[dayOfWeek]}`;
     document.getElementById('mahi-current-date').textContent = currentDateString;
 }
 
