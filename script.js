@@ -20,6 +20,9 @@ const months = [
     { name: "Winter 3rd", latin_name: "December", persian_name: "Esfand (Holy Devotion)", days: 30 },
 ];
 
+const day_of_week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+
 function padZero(value) {
     return value < 10 ? `0${value}` : value;
 }
@@ -66,7 +69,6 @@ function updateMahiTime() {
         }
     }
 
-    const day_of_week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     dayOfWeek = day_of_week[dayOfWeek];
     const currentDateString = `${now.getFullYear()}, ${month_num}, ${dayOfMonth}, ${day_of_week[dayOfWeek]}`;
     document.getElementById('mahi-current-date').textContent = currentDateString;
