@@ -27,10 +27,8 @@ function padZero(value) {
     return value < 10 ? `0${value}` : value;
 }
 
-function updateMahiTime() {
-    const now = new Date();
-    const mahiYearStart = new Date('2024-03-20T03:07:00');
-    const elapsedMilliseconds = now - mahiYearStart;
+function get_detail(start, now) {
+    const elapsedMilliseconds = now - start;
     const elapsedMahiDays = elapsedMilliseconds / (mahiDay * 1000);
     const currentMahiDayOfYear = Math.floor(elapsedMahiDays);
     const remainingDayFraction = elapsedMahiDays - currentMahiDayOfYear;
@@ -45,10 +43,6 @@ function updateMahiTime() {
 
     const period = currentMahiHour < 10 ? 'AM' : 'PM';
     currentMahiHour = currentMahiHour % 10;
-
-    const currentTimeString = `Time: ${padZero(currentMahiHour)}:${padZero(currentMahiMinute)}:${padZero(currentMahiSecond)} ${period}`;
-    document.getElementById('mahi-current-time').textContent = currentTimeString;
-
     let dayOfYear = currentMahiDayOfYear + 1;
     let month = "";
     let persianMonth = "";
@@ -70,12 +64,24 @@ function updateMahiTime() {
     }
 
     dayOfWeek = day_of_week[dayOfWeek];
-    const currentDateString = `${now.getFullYear()}, ${month_num}, ${dayOfMonth}, ${dayOfWeek}`;
+    return year, month, day, hour, min, sec, weekday, period
+}
+
+function updateMahiTime() {
+    const now = new Date();
+    const mahiYearStart = new Date('2024-03-20T03:07:00');
+    const yearStart = new Date('2024-01-01T00:00:00');
+    mYear, mMonth, mDay, mHour, mMin, mSec, mWeekday, mPeriod = get_detail(mahiYearStart, now);
+    gYear, gMonth, gDay, gHour, gMin, gSec, gWeekday, gPeriod = get_detail(yearStart, now);
+
+    const currentTimeString = `Time: ${padZero(mHour)}:${padZero(mMin)}:${padZero(mSec)} ${mPeriod}`;
+    document.getElementById('mahi-current-time').textContent = currentTimeString;
+
+    const currentDateString = `${now.getFullYear()}, ${mMonth}, ${mDay}, ${mWeekday}`;
     document.getElementById('mahi-current-date').textContent = currentDateString;
 
-    document.getElementById('mahi-persian-month').textContent = `Persian Month: ${persianMonth}`;
-    document.getElementById('mahi-latin-month').textContent = `Gregorian Month: ${latinMonth}`;
-    document.getElementById('mahi-seasonal-month').textContent = `Seasonal: ${month}`;
+    document.getElementById('mahi-persian-month').textContent = `Mahi in Persian: ${now.getFullYear()}, ${months.persian_name[mMonth-1]}, ${mDay}, ${mWeekday}`;
+    document.getElementById('mahi-latin-month').textContent = `Mahi in Gregorian: ${now.getFullYear()}, ${months.latin_name[gMonth-1]}, ${gDay}, ${gWeekday}`;
 }
 
 setInterval(updateMahiTime, 1);
