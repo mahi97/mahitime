@@ -6,18 +6,18 @@ const mahiYear = 366 * mahiDay;
 
 const seasons = ["Spring", "Summer", "Autumn", "Winter"];
 const months = [
-    { name: "Spring 1st Month", latin_name: "January", persian_name: "Farvardīn (Guardian spirits)", days: 31 },
-    { name: "Spring 2nd Month", latin_name: "February", persian_name: "Ordībehešt (Best Righteousness)", days: 31 },
-    { name: "Spring 3rd Month", latin_name: "March", persian_name: "Khordād (Perfection)", days: 31 },
-    { name: "Summer 1st Month", latin_name: "April", persian_name: "Tīr (Sirius)", days: 31 },
-    { name: "Summer 2nd Month", latin_name: "May", persian_name: "Amordād (Immortality)", days: 31 },
-    { name: "Summer 3rd Month", latin_name: "June", persian_name: "Shahrīvar (Desirable Dominion)", days: 31 },
-    { name: "Autumn 1st Month", latin_name: "July", persian_name: "Mehr (Covenant)", days: 30 },
-    { name: "Autumn 2nd Month", latin_name: "August", persian_name: "Ābān (Waters)", days: 30 },
-    { name: "Autumn 3rd Month", latin_name: "September", persian_name: "Āzar (Fire)", days: 30 },
-    { name: "Winter 1st Month", latin_name: "October", persian_name: "Dey (The Creator)", days: 30 },
-    { name: "Winter 2nd Month", latin_name: "November", persian_name: "Bahman (Good Spirit)", days: 30 },
-    { name: "Winter 3rd Month", latin_name: "December", persian_name: "Esfand (Holy Devotion)", days: 30 },
+    { name: "Spring 1st", latin_name: "January", persian_name: "Farvardīn (Guardian spirits)", days: 31 },
+    { name: "Spring 2nd", latin_name: "February", persian_name: "Ordībehešt (Best Righteousness)", days: 31 },
+    { name: "Spring 3rd", latin_name: "March", persian_name: "Khordād (Perfection)", days: 31 },
+    { name: "Summer 1st", latin_name: "April", persian_name: "Tīr (Sirius)", days: 31 },
+    { name: "Summer 2nd", latin_name: "May", persian_name: "Amordād (Immortality)", days: 31 },
+    { name: "Summer 3rd", latin_name: "June", persian_name: "Shahrīvar (Desirable Dominion)", days: 31 },
+    { name: "Autumn 1st", latin_name: "July", persian_name: "Mehr (Covenant)", days: 30 },
+    { name: "Autumn 2nd", latin_name: "August", persian_name: "Ābān (Waters)", days: 30 },
+    { name: "Autumn 3rd", latin_name: "September", persian_name: "Āzar (Fire)", days: 30 },
+    { name: "Winter 1st", latin_name: "October", persian_name: "Dey (The Creator)", days: 30 },
+    { name: "Winter 2nd", latin_name: "November", persian_name: "Bahman (Good Spirit)", days: 30 },
+    { name: "Winter 3rd", latin_name: "December", persian_name: "Esfand (Holy Devotion)", days: 30 },
 ];
 
 function padZero(value) {
@@ -51,7 +51,7 @@ function updateMahiTime() {
     let persianMonth = "";
     let latinMonth = "";
     let dayOfMonth = 0;
-    let dayOfWeek = (dayOfYear - 1) % 10;
+    let dayOfWeek = (dayOfYear - 1) + 3 % 7;
 
     for (let i = 0; i < months.length; i++) {
         if (dayOfYear > months[i].days) {
@@ -65,11 +65,13 @@ function updateMahiTime() {
         }
     }
 
-    const currentDateString = `Year: ${now.getFullYear()}, Month: ${month}, Day: ${dayOfMonth}, Day of Week: ${dayOfWeek}`;
+    const day_of_week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];   
+
+    const currentDateString = `${now.getFullYear()}, ${month}, ${dayOfMonth}, Day of Week: ${day_of_week[dayOfWeek]}`;
     document.getElementById('mahi-current-date').textContent = currentDateString;
 
     document.getElementById('persian-month').textContent = `Persian: ${persianMonth}`;
-    document.getElementById('latin-month').textContent = `Latin: ${latinMonth}`;
+    document.getElementById('latin-month').textContent = `English: ${latinMonth}`;
     document.getElementById('seasonal-month').textContent = `Seasonal: ${month}`;
 }
 
