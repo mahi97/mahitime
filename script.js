@@ -67,12 +67,11 @@ function getDetail(start, now, offset) {
         }
     }
     dayOfWeek = day_of_week[dayOfWeek];
-    return { year: now.getFullYear()+10000, month, dayOfMonth, hour: currentMahiHour, min: currentMahiMinute, sec: currentMahiSecond, weekday: dayOfWeek, period, persianMonth, latinMonth };
+    return { year: now.getUTCFullYear()+10000, month, dayOfMonth, hour: currentMahiHour, min: currentMahiMinute, sec: currentMahiSecond, weekday: dayOfWeek, period, persianMonth, latinMonth };
 }
 
 function updateMahiTime() {
-    let now = new Date();
-    now = now.toISOString();
+    let now = new Date().toISOString();
     const mahiYearStart = new Date(Date.UTC(2024, 2, 20, 3, 7, 0));
     // const yearStart = new Date('2024-01-01T00:00:00');
     const mahiDetail = getDetail(mahiYearStart, now, 3);
