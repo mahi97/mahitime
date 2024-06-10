@@ -60,5 +60,5 @@ function updateMahiTime() {
     document.getElementById('mahi-current-date').textContent = currentDateString;
 }
 
-setInterval(updateMahiTime, mahiSecond * 100000);
+setInterval(updateMahiTime, 1);
 updateMahiTime();
