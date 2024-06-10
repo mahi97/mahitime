@@ -11,42 +11,45 @@
         <h1 class="text-3xl">MahiTime and MahiCalendar</h1>
     </header>
     <main class="p-4">
-        <section id="mahitime" class="mb-8">
-            <h2 class="text-2xl font-bold mb-4">MahiTime</h2>
-            <p>MahiTime introduces a new unit of time:</p>
-            <ul class="list-disc pl-6">
-                <li><strong>MahiSecond:</strong> 0.431105536 seconds</li>
-                <li><strong>MahiMinute:</strong> 100 MahiSeconds (~43 seconds)</li>
-                <li><strong>MahiHour:</strong> 100 MahiMinutes (~71 minutes, 51 seconds)</li>
-                <li><strong>MahiDay:</strong> 20 MahiHours (~57 seconds longer than a sidereal day)</li>
-                <li><strong>MahiYear:</strong> 366 MahiDays (exactly one tropical year, no leap years)</li>
-            </ul>
-        </section>
-        <section id="mahi-calendar" class="mb-8">
-            <h2 class="text-2xl font-bold mb-4">MahiCalendar</h2>
-            <p>The MahiCalendar provides a structured approach to seasons and months:</p>
-            <ul class="list-disc pl-6">
-                <li><strong>Seasons:</strong>
-                    <ul class="list-disc pl-6">
-                        <li>Spring: 93 MahiDays</li>
-                        <li>Summer: 93 MahiDays</li>
-                        <li>Autumn: 90 MahiDays</li>
-                        <li>Winter: 90 MahiDays</li>
-                    </ul>
-                </li>
-                <li><strong>Months:</strong>
-                    <ul class="list-disc pl-6">
-                        <li>Spring/Summer: 31 MahiDays each month</li>
-                        <li>Autumn/Winter: 30 MahiDays each month</li>
-                    </ul>
-                </li>
-                <li><strong>Weeks:</strong> 10 days each</li>
-            </ul>
-        </section>
-        <section id="current-time">
+        <section id="current-time" class="mb-8">
             <h2 class="text-2xl font-bold mb-4">Current MahiTime</h2>
             <p id="mahi-current-time" class="text-xl"></p>
+            <p id="mahi-current-date" class="text-xl"></p>
         </section>
+        <div class="grid grid-cols-2 gap-4">
+            <section id="mahitime" class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">MahiTime</h2>
+                <p>MahiTime introduces a new unit of time:</p>
+                <ul class="list-disc pl-6">
+                    <li><strong>MahiSecond:</strong> 0.431105536 seconds</li>
+                    <li><strong>MahiMinute:</strong> 100 MahiSeconds (~43 seconds)</li>
+                    <li><strong>MahiHour:</strong> 100 MahiMinutes (~71 minutes, 51 seconds)</li>
+                    <li><strong>MahiDay:</strong> 20 MahiHours (~57 seconds longer than a sidereal day)</li>
+                    <li><strong>MahiYear:</strong> 366 MahiDays (exactly one tropical year, no leap years)</li>
+                </ul>
+            </section>
+            <section id="mahi-calendar" class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">MahiCalendar</h2>
+                <p>The MahiCalendar provides a structured approach to seasons and months:</p>
+                <ul class="list-disc pl-6">
+                    <li><strong>Seasons:</strong>
+                        <ul class="list-disc pl-6">
+                            <li>Spring: 93 MahiDays</li>
+                            <li>Summer: 93 MahiDays</li>
+                            <li>Autumn: 90 MahiDays</li>
+                            <li>Winter: 90 MahiDays</li>
+                        </ul>
+                    </li>
+                    <li><strong>Months:</strong>
+                        <ul class="list-disc pl-6">
+                            <li>Spring/Summer: 31 MahiDays each month</li>
+                            <li>Autumn/Winter: 30 MahiDays each month</li>
+                        </ul>
+                    </li>
+                    <li><strong>Weeks:</strong> 10 days each</li>
+                </ul>
+            </section>
+        </div>
     </main>
     <script src="script.js"></script>
 </body>
