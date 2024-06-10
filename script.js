@@ -73,11 +73,11 @@ function getDetail(start, now, offset) {
 function updateMahiTime() {
     const now = new Date();
     const mahiYearStart = new Date('2024-03-20T03:07:00');
-    const yearStart = new Date('2024-01-01T00:00:00');
+    // const yearStart = new Date('2024-01-01T00:00:00');
     const mahiDetail = getDetail(mahiYearStart, now, 3);
     // const gregorianDetail = getDetail(yearStart, now, 0);
 
-    const currentTimeString = `${padZero(mahiDetail.hour)}:${padZero(mahiDetail.min)}:${padZero(mahiDetail.sec)} or ${padZero(mahiDetail.hour)}.${padZero(mahiDetail.min)}${padZero(mahiDetail.sec)} ${mahiDetail.period}`;
+    const currentTimeString = `Time: ${padZero(mahiDetail.hour)}:${padZero(mahiDetail.min)}:${padZero(mahiDetail.sec)} --or-- ${padZero(mahiDetail.hour)}.${padZero(mahiDetail.min)}${padZero(mahiDetail.sec)} ${mahiDetail.period}`;
     document.getElementById('mahi-current-time').textContent = currentTimeString;
 
     const currentDateString = `${mahiDetail.year}, ${mahiDetail.month}, ${mahiDetail.dayOfMonth}, ${mahiDetail.weekday}`;
