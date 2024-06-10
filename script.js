@@ -64,15 +64,23 @@ function get_detail(start, now) {
     }
 
     dayOfWeek = day_of_week[dayOfWeek];
-    return year, month, day, hour, min, sec, weekday, period
+
+    let month = month_num;
+    let day = dayOfMonth;
+    let hour = currentMahiHour;
+    let min = currentMahiMinute;
+    let sec = currentMahiSecond
+    let weekday = dayOfWeek; 
+
+    return month, day, hour, min, sec, weekday, period
 }
 
 function updateMahiTime() {
     const now = new Date();
     const mahiYearStart = new Date('2024-03-20T03:07:00');
     const yearStart = new Date('2024-01-01T00:00:00');
-    mYear, mMonth, mDay, mHour, mMin, mSec, mWeekday, mPeriod = get_detail(mahiYearStart, now);
-    gYear, gMonth, gDay, gHour, gMin, gSec, gWeekday, gPeriod = get_detail(yearStart, now);
+    mMonth, mDay, mHour, mMin, mSec, mWeekday, mPeriod = get_detail(mahiYearStart, now);
+    gMonth, gDay, gHour, gMin, gSec, gWeekday, gPeriod = get_detail(yearStart, now);
 
     const currentTimeString = `Time: ${padZero(mHour)}:${padZero(mMin)}:${padZero(mSec)} ${mPeriod}`;
     document.getElementById('mahi-current-time').textContent = currentTimeString;
