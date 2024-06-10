@@ -61,7 +61,7 @@ function updateMahiTime() {
             persianMonth = months[i].persian_name;
             latinMonth = months[i].latin_name;
             dayOfMonth = dayOfYear;
-            month_num = i;
+            month_num = i+1;
             break;
         }
     }
