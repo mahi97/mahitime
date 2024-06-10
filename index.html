@@ -5,16 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MahiTime and MahiCalendar</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .current-time-date {
+            font-size: 3rem;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+    </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
     <header class="bg-blue-600 text-white p-4">
         <h1 class="text-3xl">MahiTime and MahiCalendar</h1>
     </header>
     <main class="p-4">
-        <section id="current-time" class="mb-8">
-            <h2 class="text-2xl font-bold mb-4">Current MahiTime</h2>
-            <p id="mahi-current-time" class="text-xl"></p>
-            <p id="mahi-current-date" class="text-xl"></p>
+        <section id="current-time-date" class="current-time-date">
+            <p id="mahi-current-time"></p>
+            <p id="mahi-current-date"></p>
         </section>
         <div class="grid grid-cols-2 gap-4">
             <section id="mahitime" class="mb-8">
