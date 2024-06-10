@@ -51,8 +51,8 @@ function updateMahiTime() {
     let persianMonth = "";
     let latinMonth = "";
     let dayOfMonth = 0;
-    let dayOfWeek = (dayOfYear - 1) + 3 % 7;
-
+    let dayOfWeek = (dayOfYear - 1 + 3) % 7;
+    let month_num = 0;
     for (let i = 0; i < months.length; i++) {
         if (dayOfYear > months[i].days) {
             dayOfYear -= months[i].days;
@@ -61,17 +61,18 @@ function updateMahiTime() {
             persianMonth = months[i].persian_name;
             latinMonth = months[i].latin_name;
             dayOfMonth = dayOfYear;
+            month_num = i;
             break;
         }
     }
 
-    const day_of_week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];   
-
-    const currentDateString = `${now.getFullYear()}, ${month}, ${dayOfMonth}, ${day_of_week[dayOfWeek]}`;
+    const day_of_week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    dayOfWeek = day_of_week[dayOfWeek];
+    const currentDateString = `${now.getFullYear()}, ${month_num}, ${dayOfMonth}, ${day_of_week[dayOfWeek]}`;
     document.getElementById('mahi-current-date').textContent = currentDateString;
 
-    document.getElementById('mahi-persian-month').textContent = `Persian: ${persianMonth}`;
-    document.getElementById('mahi-latin-month').textContent = `Latin: ${latinMonth}`;
+    document.getElementById('mahi-persian-month').textContent = `Persian Month: ${persianMonth}`;
+    document.getElementById('mahi-latin-month').textContent = `Gregorian Month: ${latinMonth}`;
     document.getElementById('mahi-seasonal-month').textContent = `Seasonal: ${month}`;
 }
 
