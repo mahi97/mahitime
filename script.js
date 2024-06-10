@@ -28,22 +28,26 @@ function updateMahiTime() {
     const currentMahiDayOfYear = Math.floor(elapsedMahiDays);
     const remainingDayFraction = elapsedMahiDays - currentMahiDayOfYear;
 
-    const currentMahiHour = Math.floor(remainingDayFraction * 20);
+    let currentMahiHour = Math.floor(remainingDayFraction * 20);
     const remainingHourFraction = (remainingDayFraction * 20) - currentMahiHour;
 
     const currentMahiMinute = Math.floor(remainingHourFraction * 100);
     const remainingMinuteFraction = (remainingHourFraction * 100) - currentMahiMinute;
 
     const currentMahiSecond = Math.floor(remainingMinuteFraction * 100);
+    const currentMahiMillisecond = Math.floor((remainingMinuteFraction * 100 - currentMahiSecond) * 1000);
 
-    const currentTimeString = `Time: ${currentMahiHour}:${currentMahiMinute}:${currentMahiSecond} or ${currentMahiHour}.${currentMahiMinute}${currentMahiSecond}`;
+    const period = currentMahiHour < 10 ? 'AM' : 'PM';
+    currentMahiHour = currentMahiHour % 10;
+
+    const currentTimeString = `Time: ${currentMahiHour}:${currentMahiMinute}:${currentMahiSecond} ${period}, or ${currentMahiHour}.${currentMahiMinute}${currentMahiSecond} ${period}`;
     document.getElementById('mahi-current-time').textContent = currentTimeString;
 
     let dayOfYear = currentMahiDayOfYear + 1;
     let month = "";
     let dayOfMonth = 0;
-    let dayOfWeek = (dayOfYear - 1 + 3) % 7; // Wendsta
-    let dayOfMahiWeek = (dayOfYear - 1) % 10;
+    let dayOfWeek = (dayOfYear - 1 + 3) % 7;
+
     for (let i = 0; i < months.length; i++) {
         if (dayOfYear > months[i].days) {
             dayOfYear -= months[i].days;
