@@ -23,13 +23,13 @@ const months = [
 const day_of_week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 let isAMPM = false;
-let calendarDisplay = "both";
+let calendarDisplay = "persian";
 
 function padZero(value) {
     return value < 10 ? `0${value}` : value;
 }
 
-function getDetail(start, now) {
+function getDetail(start, now, offset) {
     const elapsedMilliseconds = now - start;
     const elapsedMahiDays = elapsedMilliseconds / (mahiDay * 1000);
     const currentMahiDayOfYear = Math.floor(elapsedMahiDays);
@@ -43,9 +43,10 @@ function getDetail(start, now) {
 
     const currentMahiSecond = Math.floor(remainingMinuteFraction * 100);
 
-    const period = currentMahiHour < 10 ? 'AM' : 'PM';
+    let period = '';
     if (isAMPM) {
         currentMahiHour = currentMahiHour % 10;
+        period = currentMahiHour < 10 ? 'AM' : 'PM';
     }
 
     let dayOfYear = currentMahiDayOfYear + 1;
@@ -53,7 +54,7 @@ function getDetail(start, now) {
     let persianMonth = "";
     let latinMonth = "";
     let dayOfMonth = 0;
-    let dayOfWeek = (dayOfYear - 1 + 3) % 7;
+    let dayOfWeek = (dayOfYear - 1 + offset) % 7;
     for (let i = 0; i < months.length; i++) {
         if (dayOfYear > months[i].days) {
             dayOfYear -= months[i].days;
@@ -73,26 +74,26 @@ function updateMahiTime() {
     const now = new Date();
     const mahiYearStart = new Date('2024-03-20T03:07:00');
     const yearStart = new Date('2024-01-01T00:00:00');
-    const mahiDetail = getDetail(mahiYearStart, now);
-    const gregorianDetail = getDetail(yearStart, now);
+    const mahiDetail = getDetail(mahiYearStart, now, 3);
+    // const gregorianDetail = getDetail(yearStart, now, 0);
 
-    const currentTimeString = `Time: ${padZero(mahiDetail.hour)}:${padZero(mahiDetail.min)}:${padZero(mahiDetail.sec)} ${mahiDetail.period}`;
+    const currentTimeString = `${padZero(mahiDetail.hour)}:${padZero(mahiDetail.min)}:${padZero(mahiDetail.sec)} or ${padZero(mahiDetail.hour)}.${padZero(mahiDetail.min)}${padZero(mahiDetail.sec)} ${mahiDetail.period}`;
     document.getElementById('mahi-current-time').textContent = currentTimeString;
 
     const currentDateString = `${mahiDetail.year}, ${mahiDetail.month}, ${mahiDetail.dayOfMonth}, ${mahiDetail.weekday}`;
     document.getElementById('mahi-current-date').textContent = currentDateString;
 
     if (calendarDisplay === "both" || calendarDisplay === "persian") {
-        document.getElementById('mahi-persian-month').textContent = `Mahi in Persian: ${mahiDetail.year}, ${mahiDetail.persianMonth}, ${mahiDetail.dayOfMonth}, ${mahiDetail.weekday}`;
+        document.getElementById('mahi-persian-month').textContent = `${mahiDetail.year}, ${mahiDetail.persianMonth}, ${mahiDetail.dayOfMonth}, ${mahiDetail.weekday}`;
     } else {
         document.getElementById('mahi-persian-month').textContent = "";
     }
 
-    if (calendarDisplay === "both" || calendarDisplay === "gregorian") {
-        document.getElementById('mahi-latin-month').textContent = `Mahi in Gregorian: ${gregorianDetail.year}, ${gregorianDetail.latinMonth}, ${gregorianDetail.dayOfMonth}, ${gregorianDetail.weekday}`;
-    } else {
-        document.getElementById('mahi-latin-month').textContent = "";
-    }
+    // if (calendarDisplay === "both" || calendarDisplay === "gregorian") {
+    //     document.getElementById('mahi-latin-month').textContent = `Mahi in Gregorian: ${gregorianDetail.year}, ${gregorianDetail.latinMonth}, ${gregorianDetail.dayOfMonth}, ${gregorianDetail.weekday}`;
+    // } else {
+    //     document.getElementById('mahi-latin-month').textContent = "";
+    // }
 }
 
 function setClockFormat(format) {
