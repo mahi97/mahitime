@@ -59,7 +59,7 @@ function getDetail(start, now, offset) {
         if (dayOfYear > months[i].days) {
             dayOfYear -= months[i].days;
         } else {
-            month = i;
+            month = i+1;
             persianMonth = months[i].persian_name;
             latinMonth = months[i].latin_name;
             dayOfMonth = dayOfYear;
