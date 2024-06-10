@@ -19,7 +19,6 @@ This project provides a website that displays the concept of MahiTime and the Ma
   - **Months:**
     - Spring/Summer: 31 MahiDays
     - Autumn/Winter: 30 MahiDays
-  - **Weeks:** 10 days each
 - Current MahiTime display that updates dynamically
 
 ## Setup
