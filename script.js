@@ -70,7 +70,7 @@ function updateMahiTime() {
     }
 
     dayOfWeek = day_of_week[dayOfWeek];
-    const currentDateString = `${now.getFullYear()}, ${month_num}, ${dayOfMonth}, ${day_of_week[dayOfWeek]}`;
+    const currentDateString = `${now.getFullYear()}, ${month_num}, ${dayOfMonth}, ${dayOfWeek}`;
     document.getElementById('mahi-current-date').textContent = currentDateString;
 
     document.getElementById('mahi-persian-month').textContent = `Persian Month: ${persianMonth}`;
