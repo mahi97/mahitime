@@ -59,7 +59,7 @@ function getDetail(start, now, offset) {
         if (dayOfYear > months[i].days) {
             dayOfYear -= months[i].days;
         } else {
-            month = months[i].name;
+            month = i;
             persianMonth = months[i].persian_name;
             latinMonth = months[i].latin_name;
             dayOfMonth = dayOfYear;
@@ -77,7 +77,7 @@ function updateMahiTime() {
     const mahiDetail = getDetail(mahiYearStart, now, 3);
     // const gregorianDetail = getDetail(yearStart, now, 0);
 
-    const currentTimeString = `Time: ${padZero(mahiDetail.hour)}:${padZero(mahiDetail.min)}:${padZero(mahiDetail.sec)} --or-- ${padZero(mahiDetail.hour)}.${padZero(mahiDetail.min)}${padZero(mahiDetail.sec)} ${mahiDetail.period}`;
+    const currentTimeString = `Time: ${padZero(mahiDetail.hour)}:${padZero(mahiDetail.min)}:${padZero(mahiDetail.sec)} -or- ${padZero(mahiDetail.hour)}.${padZero(mahiDetail.min)}${padZero(mahiDetail.sec)} ${mahiDetail.period}`;
     document.getElementById('mahi-current-time').textContent = currentTimeString;
 
     const currentDateString = `${mahiDetail.year}, ${mahiDetail.month}, ${mahiDetail.dayOfMonth}, ${mahiDetail.weekday}`;
