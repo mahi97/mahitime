@@ -22,12 +22,14 @@ const months = [
 
 const day_of_week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
+let isAMPM = false;
+let calendarDisplay = "both";
 
 function padZero(value) {
     return value < 10 ? `0${value}` : value;
 }
 
-function get_detail(start, now) {
+function getDetail(start, now) {
     const elapsedMilliseconds = now - start;
     const elapsedMahiDays = elapsedMilliseconds / (mahiDay * 1000);
     const currentMahiDayOfYear = Math.floor(elapsedMahiDays);
@@ -42,14 +44,16 @@ function get_detail(start, now) {
     const currentMahiSecond = Math.floor(remainingMinuteFraction * 100);
 
     const period = currentMahiHour < 10 ? 'AM' : 'PM';
-    currentMahiHour = currentMahiHour % 10;
+    if (isAMPM) {
+        currentMahiHour = currentMahiHour % 10;
+    }
+
     let dayOfYear = currentMahiDayOfYear + 1;
     let month = "";
     let persianMonth = "";
     let latinMonth = "";
     let dayOfMonth = 0;
     let dayOfWeek = (dayOfYear - 1 + 3) % 7;
-    let month_num = 0;
     for (let i = 0; i < months.length; i++) {
         if (dayOfYear > months[i].days) {
             dayOfYear -= months[i].days;
@@ -58,38 +62,45 @@ function get_detail(start, now) {
             persianMonth = months[i].persian_name;
             latinMonth = months[i].latin_name;
             dayOfMonth = dayOfYear;
-            month_num = i+1;
             break;
         }
     }
-
     dayOfWeek = day_of_week[dayOfWeek];
-
-    let month = month_num;
-    let day = dayOfMonth;
-    let hour = currentMahiHour;
-    let min = currentMahiMinute;
-    let sec = currentMahiSecond
-    let weekday = dayOfWeek; 
-
-    return month, day, hour, min, sec, weekday, period
+    return { year: now.getFullYear(), month, dayOfMonth, hour: currentMahiHour, min: currentMahiMinute, sec: currentMahiSecond, weekday: dayOfWeek, period, persianMonth, latinMonth };
 }
 
 function updateMahiTime() {
     const now = new Date();
     const mahiYearStart = new Date('2024-03-20T03:07:00');
     const yearStart = new Date('2024-01-01T00:00:00');
-    mMonth, mDay, mHour, mMin, mSec, mWeekday, mPeriod = get_detail(mahiYearStart, now);
-    gMonth, gDay, gHour, gMin, gSec, gWeekday, gPeriod = get_detail(yearStart, now);
+    const mahiDetail = getDetail(mahiYearStart, now);
+    const gregorianDetail = getDetail(yearStart, now);
 
-    const currentTimeString = `Time: ${padZero(mHour)}:${padZero(mMin)}:${padZero(mSec)} ${mPeriod}`;
+    const currentTimeString = `Time: ${padZero(mahiDetail.hour)}:${padZero(mahiDetail.min)}:${padZero(mahiDetail.sec)} ${mahiDetail.period}`;
     document.getElementById('mahi-current-time').textContent = currentTimeString;
 
-    const currentDateString = `${now.getFullYear()}, ${mMonth}, ${mDay}, ${mWeekday}`;
+    const currentDateString = `${mahiDetail.year}, ${mahiDetail.month}, ${mahiDetail.dayOfMonth}, ${mahiDetail.weekday}`;
     document.getElementById('mahi-current-date').textContent = currentDateString;
 
-    document.getElementById('mahi-persian-month').textContent = `Mahi in Persian: ${now.getFullYear()}, ${months.persian_name[mMonth-1]}, ${mDay}, ${mWeekday}`;
-    document.getElementById('mahi-latin-month').textContent = `Mahi in Gregorian: ${now.getFullYear()}, ${months.latin_name[gMonth-1]}, ${gDay}, ${gWeekday}`;
+    if (calendarDisplay === "both" || calendarDisplay === "persian") {
+        document.getElementById('mahi-persian-month').textContent = `Mahi in Persian: ${mahiDetail.year}, ${mahiDetail.persianMonth}, ${mahiDetail.dayOfMonth}, ${mahiDetail.weekday}`;
+    } else {
+        document.getElementById('mahi-persian-month').textContent = "";
+    }
+
+    if (calendarDisplay === "both" || calendarDisplay === "gregorian") {
+        document.getElementById('mahi-latin-month').textContent = `Mahi in Gregorian: ${gregorianDetail.year}, ${gregorianDetail.latinMonth}, ${gregorianDetail.dayOfMonth}, ${gregorianDetail.weekday}`;
+    } else {
+        document.getElementById('mahi-latin-month').textContent = "";
+    }
+}
+
+function setClockFormat(format) {
+    isAMPM = (format === 'ampm');
+}
+
+function setCalendarDisplay(display) {
+    calendarDisplay = display;
 }
 
 setInterval(updateMahiTime, 1);

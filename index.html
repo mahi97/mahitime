@@ -17,6 +17,18 @@
         header {
             text-align: center;
         }
+
+        .input-buttons {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .input-buttons button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
@@ -24,6 +36,17 @@
         <h1 class="text-3xl">MahiTime and MahiCalendar</h1>
     </header>
     <main class="p-4">
+        <section class="input-buttons">
+            <div>
+                <button onclick="setClockFormat('20hour')">20-Hour Clock</button>
+                <button onclick="setClockFormat('ampm')">10-Hour Clock with AM/PM</button>
+            </div>
+            <div>
+                <button onclick="setCalendarDisplay('persian')">Persian Calendar Only</button>
+                <button onclick="setCalendarDisplay('gregorian')">Gregorian Calendar Only</button>
+                <button onclick="setCalendarDisplay('both')">Show Both Calendars</button>
+            </div>
+        </section>
         <section id="current-time-date" class="current-time-date">
             <p id="mahi-current-time"></p>
             <p id="mahi-current-date"></p>
@@ -44,7 +67,7 @@
             </section>
             <section id="mahi-calendar" class="mb-8">
                 <h2 class="text-2xl font-bold mb-4">MahiCalendar</h2>
-                <p>The MahiCalendar provides a structured approach to seasons and months which is more accurate but also matches with Persian calender:</p>
+                <p>The MahiCalendar provides a structured approach to seasons and months which is more accurate but also matches with Persian calendar:</p>
                 <ul class="list-disc pl-6">
                     <li><strong>Seasons:</strong>
                         <ul class="list-disc pl-6">
