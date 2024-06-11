@@ -2,7 +2,9 @@ const mahiSecond = 0.423;
 const mahiMinute = 100 * mahiSecond;
 const mahiHour = 100 * mahiMinute;
 const mahiDay = 20.0178 * mahiHour;
-const mahiYear = 366 * mahiDay;
+const Day = 20 * mahiHour;
+// const mahiYear = 366 * mahiDay;
+// const Year = 365.2422 * Day
 
 const seasons = ["Spring", "Summer", "Autumn", "Winter"];
 const months = [
@@ -31,7 +33,7 @@ function padZero(value) {
 
 function getDetail(start, now, offset) {
     const elapsedMilliseconds = now - start;
-    const elapsedMahiDays = elapsedMilliseconds / (mahiDay * 1000);
+    const elapsedMahiDays = elapsedMilliseconds / (Day * 1000);
     const currentMahiDayOfYear = Math.floor(elapsedMahiDays);
     const remainingDayFraction = elapsedMahiDays - currentMahiDayOfYear;
 
@@ -72,7 +74,7 @@ function getDetail(start, now, offset) {
 
 function updateMahiTime() {
     let now = new Date();
-    const mahiYearStart = new Date(Date.UTC(2024, 2, 19, 19, 6, 7, 500))
+    const mahiYearStart = new Date(Date.UTC(2024, 2, 21, 6, 53, 1, 400));
     const yearStart = new Date('2024-01-01T00:00:00');
     const mahiDetail = getDetail(mahiYearStart, now, 3);
     const gregorianDetail = getDetail(yearStart, now, 0);
