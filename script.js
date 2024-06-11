@@ -56,20 +56,20 @@ function getDetail(start, now, offset) {
     let persianMonth = "";
     let latinMonth = "";
     let dayOfMonth = 0;
-    let dayOfWeek = (dayOfYear - 1 + offset) % 7;
+    let dayOfWeek = now.getDay();
     for (let i = 0; i < months.length; i++) {
         if (dayOfYear > months[i].days) {
             dayOfYear -= months[i].days;
         } else {
             month = i+1;
             persianMonth = months[i].persian_name;
-            latinMonth = months[i].latin_name;
+            latinMonth = months[now.getMonth()].latin_name;
             dayOfMonth = dayOfYear;
             break;
         }
     }
     dayOfWeek = day_of_week[dayOfWeek];
-    return { year: now.getUTCFullYear()+10000, month, dayOfMonth, hour: currentMahiHour, min: currentMahiMinute, sec: currentMahiSecond, weekday: dayOfWeek, period, persianMonth, latinMonth };
+    return { year: now.getFullYear()+10000, month, dayOfMonth, hour: currentMahiHour, min: currentMahiMinute, sec: currentMahiSecond, weekday: dayOfWeek, period, persianMonth, latinMonth };
 }
 
 function updateMahiTime() {
@@ -86,7 +86,7 @@ function updateMahiTime() {
     document.getElementById('mahi-current-date').textContent = currentDateString;
 
     document.getElementById('mahi-persian-month').textContent = `${mahiDetail.year}, ${mahiDetail.persianMonth}, ${mahiDetail.dayOfMonth}, ${mahiDetail.weekday}`;    
-    document.getElementById('mahi-latin-month').textContent = `${gregorianDetail.year}, ${gregorianDetail.latinMonth}, ${gregorianDetail.dayOfMonth}, ${gregorianDetail.weekday}`;
+    document.getElementById('mahi-latin-month').textContent = `${gregorianDetail.year}, ${gregorianDetail.month}, ${now.getDate()}, ${gregorianDetail.weekday}`;
     
 }
 
