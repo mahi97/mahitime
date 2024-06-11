@@ -74,8 +74,8 @@ function getDetail(start, now, offset) {
 
 function updateMahiTime() {
     let now = new Date();
-    const mahiYearStart = new Date(Date.UTC(2024, 2, 21, 8, 37, 30, 0));
-    const yearStart = new Date(Date.UTC(2024, 0, 0, 2, 7, 30, 0));
+    const mahiYearStart = new Date(2024, 2, 20, 0, 0, 0, 0);
+    const yearStart = new Date(2024, 0, 0, 0, 0, 0, 0);
     const mahiDetail = getDetail(mahiYearStart, now, 3);
     const gregorianDetail = getDetail(yearStart, now, 0);
 
