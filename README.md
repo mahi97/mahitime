@@ -2,6 +2,8 @@
 
 This project provides a website that displays the concept of MahiTime and the MahiCalendar, offering a new way to measure and visualize time.
 
+You can read the full blog here: [MahiTime](https://mahi97.github.io/mahi-log/2024/06/08/mahitime.html)
+
 ## Features
 
 - Explanation of MahiTime units:
