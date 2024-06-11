@@ -1,7 +1,7 @@
-const mahiSecond = 0.423;
+const mahiSecond = 0.432;
 const mahiMinute = 100 * mahiSecond;
 const mahiHour = 100 * mahiMinute;
-const mahiDay = 20.0178 * mahiHour;
+const mahiDay = 20.0381628 * mahiHour;
 const Day = 20 * mahiHour;
 // const mahiYear = 366 * mahiDay;
 // const Year = 365.2422 * Day
