@@ -1,0 +1,56 @@
+.current-time-date {
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+header {
+    text-align: center;
+}
+
+.input-buttons {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.input-buttons button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.input-buttons button:hover {
+    background-color: #0056b3;
+}
+
+
+.github-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: #0366d6;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.github-logo {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+.github-link:hover {
+    color: #0056b3;
+}
+
+.github-link:hover .github-logo {
+    transform: scale(1.1);
+}

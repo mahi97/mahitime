@@ -17,40 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MahiTime and MahiCalendar</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        .current-time-date {
-            font-size: 3rem;
-            font-weight: bold;
-            text-align: center;
-            margin-top: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        header {
-            text-align: center;
-        }
-
-        .input-buttons {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .input-buttons button {
-            margin: 0 10px;
-            padding: 10px 20px;
-            font-size: 1rem;
-            cursor: pointer;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .input-buttons button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-gray-100 text-gray-800">
     <header class="bg-blue-600 text-white p-4">
@@ -66,6 +33,7 @@
         <section id="current-time-date" class="current-time-date">
             <p id="mahi-current-time"></p>
             <p id="mahi-current-date"></p>
+            <p id="mahi-latin-month"></p>
             <p id="mahi-persian-month"></p>
         </section>
         <div class="grid grid-cols-2 gap-4">
@@ -102,6 +70,10 @@
                 </ul>
             </section>
         </div>
+        <a href="https://github.com/mahi97/mahitime" class="github-link" target="_blank">
+            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo" class="github-logo">
+            Visit My GitHub Repository
+        </a>
     </main>
     <script src="script.js"></script>
 </body>

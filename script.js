@@ -1,7 +1,7 @@
-const mahiSecond = 0.431105536;
+const mahiSecond = 0.423;
 const mahiMinute = 100 * mahiSecond;
 const mahiHour = 100 * mahiMinute;
-const mahiDay = 20 * mahiHour;
+const mahiDay = 20.0178 * mahiHour;
 const mahiYear = 366 * mahiDay;
 
 const seasons = ["Spring", "Summer", "Autumn", "Winter"];
@@ -73,9 +73,9 @@ function getDetail(start, now, offset) {
 function updateMahiTime() {
     let now = new Date();
     const mahiYearStart = new Date(Date.UTC(2024, 2, 19, 19, 6, 7, 500))
-    // const yearStart = new Date('2024-01-01T00:00:00');
+    const yearStart = new Date('2024-01-01T00:00:00');
     const mahiDetail = getDetail(mahiYearStart, now, 3);
-    // const gregorianDetail = getDetail(yearStart, now, 0);
+    const gregorianDetail = getDetail(yearStart, now, 0);
 
     const currentTimeString = `Time: ${padZero(mahiDetail.hour)}:${padZero(mahiDetail.min)}:${padZero(mahiDetail.sec)} -or- ${padZero(mahiDetail.hour)}.${padZero(mahiDetail.min)}${padZero(mahiDetail.sec)} ${mahiDetail.period}`;
     document.getElementById('mahi-current-time').textContent = currentTimeString;
@@ -83,17 +83,9 @@ function updateMahiTime() {
     const currentDateString = `${mahiDetail.year}, ${mahiDetail.month}, ${mahiDetail.dayOfMonth}, ${mahiDetail.weekday}`;
     document.getElementById('mahi-current-date').textContent = currentDateString;
 
-    if (calendarDisplay === "both" || calendarDisplay === "persian") {
-        document.getElementById('mahi-persian-month').textContent = `${mahiDetail.year}, ${mahiDetail.persianMonth}, ${mahiDetail.dayOfMonth}, ${mahiDetail.weekday}`;
-    } else {
-        document.getElementById('mahi-persian-month').textContent = "";
-    }
-
-    // if (calendarDisplay === "both" || calendarDisplay === "gregorian") {
-    //     document.getElementById('mahi-latin-month').textContent = `Mahi in Gregorian: ${gregorianDetail.year}, ${gregorianDetail.latinMonth}, ${gregorianDetail.dayOfMonth}, ${gregorianDetail.weekday}`;
-    // } else {
-    //     document.getElementById('mahi-latin-month').textContent = "";
-    // }
+    document.getElementById('mahi-persian-month').textContent = `${mahiDetail.year}, ${mahiDetail.persianMonth}, ${mahiDetail.dayOfMonth}, ${mahiDetail.weekday}`;    
+    document.getElementById('mahi-latin-month').textContent = `${gregorianDetail.year}, ${gregorianDetail.latinMonth}, ${gregorianDetail.dayOfMonth}, ${gregorianDetail.weekday}`;
+    
 }
 
 function setClockFormat(format) {
