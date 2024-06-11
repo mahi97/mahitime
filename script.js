@@ -86,7 +86,7 @@ function updateMahiTime() {
     document.getElementById('mahi-current-date').textContent = currentDateString;
 
     document.getElementById('mahi-persian-month').textContent = `${mahiDetail.year}, ${mahiDetail.persianMonth}, ${mahiDetail.dayOfMonth}, ${mahiDetail.weekday}`;    
-    document.getElementById('mahi-latin-month').textContent = `${gregorianDetail.year}, ${gregorianDetail.month}, ${now.getDate()}, ${gregorianDetail.weekday}`;
+    document.getElementById('mahi-latin-month').textContent = `${gregorianDetail.year}, ${gregorianDetail.latinMonth}, ${now.getDate()}, ${gregorianDetail.weekday}`;
     
 }
 
