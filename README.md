@@ -11,7 +11,7 @@ You can read the full blog here: [MahiTime](https://mahi97.github.io/mahi-log/20
   - **MahiMinute:** 100 MahiSeconds (~43.2 seconds)
   - **MahiHour:** 100 MahiMinutes (~72 minutes)
   - **Day:** 20 MahiHours
-  - **MahiDay:** 20.0381.628 MahiHours
+  - **MahiDay:** 20.0381628 MahiHours
   - **MahiYear:** 366 MahiDays (exactly one tropical year, no leap years)
 - Explanation of MahiCalendar structure:
   - **Seasons:**
